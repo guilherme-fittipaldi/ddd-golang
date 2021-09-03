@@ -1,4 +1,4 @@
-module github.com/percybolmer/ddd-go
+module github.com/guilherme-fittipaldi/ddd-golang
 
 go 1.17
 
