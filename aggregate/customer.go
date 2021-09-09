@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	ErrIvalidPerson = errors.New("a customer has to have an valid person")
+	ErrInvalidPerson = errors.New("a customer has to have an valid person")
 )
 
 type Customer struct {
@@ -20,7 +20,7 @@ type Customer struct {
 
 func NewCustomer(name string) (Customer, error) {
 	if name == "" {
-		return Customer{}, ErrIvalidPerson
+		return Customer{}, ErrInvalidPerson
 	}
 
 	person := &entity.Person{Name: name, ID: uuid.New()}
@@ -30,4 +30,12 @@ func NewCustomer(name string) (Customer, error) {
 		Products:     make([]*entity.Item, 0),
 		Transactions: make([]valueobject.Transaction, 0),
 	}, nil
+}
+
+func (c *Customer) GetID() uuid.UUID {
+	return c.Person.ID
+}
+
+func (c *Customer) SetName(name string) {
+	c.Person.Name = name
 }
